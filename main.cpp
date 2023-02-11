@@ -1,4 +1,15 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
 
 const int w = 1600, h = 900;
 const float radius = 50.f;
@@ -12,13 +23,28 @@ void updateDragVelocity(sf::Vector2f& vel, float drag) {
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Moving Circle");
-    sf::CircleShape circle(radius);
+    
+    sf::Font font;
+    if (!font.loadFromFile("SourceCodePro.ttf")) {
+        std::cout << "Cant load font";
+    }
 
+    sf::CircleShape circle(radius);
     circle.setFillColor(sf::Color::White);
     circle.setOrigin(50.f, 50.f);
-    circle.setPosition(400.f, 300.f);
+    circle.setPosition(w/2.f, h/2.f);
 
-    sf::Vector2f velocity(10.f, 10.f);
+    sf::Text text;
+    text.setFont(font);
+    text.setCharacterSize(24);
+    text.setFillColor(sf::Color::White);
+
+    sf::Vector2f velocity(0.f, 0.f);
+
+    float fps = 0.f;
+    sf::Clock clock = sf::Clock::Clock();
+    sf::Time previousTime = clock.getElapsedTime();
+    sf::Time currentTime;
 
     bool mouseDown = false;
     while (window.isOpen())
@@ -66,9 +92,17 @@ int main()
             }
         }
 
+        text.setString(to_string(fps));
+
         window.draw(circle);
+        window.draw(text);
 
         window.display();
+
+        currentTime = clock.getElapsedTime();
+        fps = 1.0f / (currentTime.asSeconds() - previousTime.asSeconds());
+        fps = floor(fps);
+        previousTime = currentTime;
     }
 
     return 0;
