@@ -12,3 +12,8 @@ There is a ball. To make it move hold down your mouse and release the ball will 
 - [ ] Audio
 - [ ] Polish
 - [ ] Cross-platform support
+
+## Requirements
+Things you need if you want to run this in visual studio
+* SFML installed
+* Source code pro Regular in the directory - with the filename `SourceCodePro.ttf`
