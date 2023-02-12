@@ -5,7 +5,7 @@ Or UMCG for short. This is my first C++ project. Made with SFML, my blood, sweat
 There is a ball. To make it move hold down your mouse and release the ball will move in the direction, opposite of the cursor's position. Press R to reset the velocity and position.
 
 ## ToDo
-- [ ] Add an objective - probably collecting something
+- [x] Add an objective - probably collecting something
 - [x] Clean up code; use OOP
 - [ ] Make different screens (start game, end game, etc.)
 - [ ] Preferences
