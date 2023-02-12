@@ -13,7 +13,12 @@ There is a ball. To make it move hold down your mouse and release the ball will 
 - [ ] Polish
 - [ ] Cross-platform support
 
-## Requirements
+## Running the game
+
+### Coding
 Things you need if you want to run this in visual studio
 * SFML installed
 * Source code pro Regular in the directory - with the filename `SourceCodePro.ttf`
+
+### Playing
+If you don't have visual studio installed, you need to download a runtime. You can find the 2015 runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=48145
