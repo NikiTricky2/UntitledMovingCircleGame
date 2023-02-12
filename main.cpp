@@ -27,10 +27,6 @@ int main()
         std::cout << "Cant load font";
     }
 
-    //sf::CircleShape circle(radius);
-    //circle.setFillColor(sf::Color::White);
-    //circle.setOrigin(50.f, 50.f);
-    //circle.setPosition(w/2.f, h/2.f);
     Player player(radius, sf::Vector2f(w / 2.f, h / 2.f));
 
     sf::Text fps_text;
@@ -52,6 +48,12 @@ int main()
             if (event.type == sf::Event::Closed)
             {
                 window.close();
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == 17) { // R(eset)
+                    player.center(w, h);
+                    player.velocity = sf::Vector2f();
+                }
             }
         }
 

@@ -41,4 +41,8 @@ public:
 			velocity.y = -velocity.y;
 		}
 	}
+
+	void center(int w, int h) {
+		circle.setPosition(sf::Vector2f(w / 2.f, h / 2.f));
+	}
 };
