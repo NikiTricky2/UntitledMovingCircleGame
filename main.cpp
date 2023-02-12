@@ -1,7 +1,10 @@
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
+
+#include <SFML/Graphics.hpp>
+
+#include "circle.hpp"
 
 template <typename T>
 std::string to_string(T value)
@@ -15,11 +18,6 @@ const int w = 1600, h = 900;
 const float radius = 50.f;
 const float drag = 0.997;
 
-void updateDragVelocity(sf::Vector2f& vel, float drag) {
-    vel.x *= drag;
-    vel.y *= drag;
-}
-
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1600, 900), "Moving Circle");
@@ -29,17 +27,16 @@ int main()
         std::cout << "Cant load font";
     }
 
-    sf::CircleShape circle(radius);
-    circle.setFillColor(sf::Color::White);
-    circle.setOrigin(50.f, 50.f);
-    circle.setPosition(w/2.f, h/2.f);
+    //sf::CircleShape circle(radius);
+    //circle.setFillColor(sf::Color::White);
+    //circle.setOrigin(50.f, 50.f);
+    //circle.setPosition(w/2.f, h/2.f);
+    Player player(radius, sf::Vector2f(w / 2.f, h / 2.f));
 
-    sf::Text text;
-    text.setFont(font);
-    text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
-
-    sf::Vector2f velocity(0.f, 0.f);
+    sf::Text fps_text;
+    fps_text.setFont(font);
+    fps_text.setCharacterSize(24);
+    fps_text.setFillColor(sf::Color::White);
 
     float fps = 0.f;
     sf::Clock clock = sf::Clock::Clock();
@@ -63,9 +60,11 @@ int main()
         sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            // std::cout << to_string(player.getPos().x); // Magic line of code that fixes everything sometimes
             sf::Vertex line[] =
             {
-                sf::Vertex(circle.getPosition()),
+                // sf::Vertex(player.getPos()), This does not work
+                sf::Vertex(player.circle.getPosition() + sf::Vector2f(radius, radius)),
                 sf::Vertex(mouse)
             };
 
@@ -74,28 +73,19 @@ int main()
             mouseDown = true;
         }
         else if (mouseDown) { // The frame after the mouse is released
-            sf::Vector2f newvelocity = mouse - circle.getPosition();
+            sf::Vector2f newvelocity = mouse - (player.circle.getPosition() + sf::Vector2f(radius, radius));
             newvelocity /= 200.f;
-            velocity = -newvelocity; // Invert bc we don't wanting the ball to go towards the cursor
+            player.velocity = -newvelocity; // Invert bc we don't wanting the ball to go towards the cursor
 
             mouseDown = false;
         } else {
-            circle.move(velocity);
-            updateDragVelocity(velocity, drag);
-
-            // Bounce off the wall
-            if (circle.getPosition().x > w || circle.getPosition().x < 0) {
-                velocity.x = -velocity.x;
-            }
-            if (circle.getPosition().y > h || circle.getPosition().y < 0) {
-                velocity.y = -velocity.y;
-            }
+            player.update(drag, w, h);
         }
 
-        text.setString(to_string(fps));
+        fps_text.setString(to_string(fps));
 
-        window.draw(circle);
-        window.draw(text);
+        window.draw(player.circle);
+        window.draw(fps_text);
 
         window.display();
 
