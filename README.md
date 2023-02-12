@@ -22,3 +22,6 @@ Things you need if you want to run this in visual studio
 
 ### Playing
 If you don't have visual studio installed, you need to download a runtime. You can find the 2015 runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=48145
+
+## Screenshots
+![image](https://user-images.githubusercontent.com/63540250/218307178-a29c4235-0b1c-43be-ae3c-2609256375ea.png)
