@@ -53,10 +53,13 @@ public:
 
 		circle.move(velocity);
 
-		if (circle.getPosition().x > w || circle.getPosition().x < 0) {
+		w -= radius;
+		h -= radius;
+
+		if (getPos().x > w || getPos().x < 0) {
 			velocity.x = -velocity.x;
 		}
-		if (circle.getPosition().y > h || circle.getPosition().y < 0) {
+		if (getPos().y > h || getPos().y < 0) {
 			velocity.y = -velocity.y;
 		}
 	}

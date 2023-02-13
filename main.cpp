@@ -21,6 +21,7 @@ const float radius = 50.f;
 const float drag = 0.997f;
 
 int score = 0;
+int moves = 0;
 
 int main()
 {
@@ -72,7 +73,7 @@ int main()
         sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            // std::cout << to_string(player.getPos().x); // Magic line of code that fixes everything sometimes
+            //std::cout << to_string(player.getPos().x); // Magic line of code that fixes everything sometimes
             sf::Vertex line[] =
             {
                 // sf::Vertex(player.getPos()), This does not work
@@ -92,6 +93,7 @@ int main()
             player.velocity = -newvelocity; // Invert bc we don't wanting the ball to go towards the cursor
 
             mouseDown = false;
+            moves++;
         } else {
             player.update(drag, w, h);
         }
@@ -103,7 +105,8 @@ int main()
 
         text.setString(
             "FPS: " + to_string(fps) + "\n" +
-            "Score: " + to_string(score)
+            "Score: " + to_string(score) + "\n" +
+            "Moves: " + to_string(moves)
         );
 
         window.draw(food.circle);
