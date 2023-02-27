@@ -24,4 +24,5 @@ Things you need if you want to run this in visual studio
 If you don't have visual studio installed, you need to download a runtime. You can find the 2015 runtime here: https://www.microsoft.com/en-us/download/details.aspx?id=48145
 
 ## Screenshots
-![image](https://user-images.githubusercontent.com/63540250/218467768-160edeff-3893-4738-ae92-407a3f5f8b87.png)
+![Gameplay](https://user-images.githubusercontent.com/63540250/218467768-160edeff-3893-4738-ae92-407a3f5f8b87.png)
+![Title Screen](https://user-images.githubusercontent.com/63540250/221582236-35a0c62a-6718-49c9-978b-95b9965ca4c2.png)
