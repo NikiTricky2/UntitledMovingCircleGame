@@ -7,7 +7,7 @@ There is a ball. To make it move hold down your mouse and release the ball will 
 ## ToDo
 - [x] Add an objective - probably collecting something
 - [x] Clean up code; use OOP
-- [ ] Make different screens (start game, end game, etc.)
+- [x] Make different screens
 - [ ] Preferences
 - [ ] Audio
 - [ ] Polish
